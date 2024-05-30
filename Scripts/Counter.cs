@@ -12,7 +12,7 @@ public class Counter : MonoBehaviour
     private int _count;
     private Coroutine _coroutine;
     
-    public event Action<int> CounterChanged;
+    public event Action<int> Changed;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class Counter : MonoBehaviour
         {
             if (_coroutine == null)
             {
-                _coroutine = StartCoroutine(IncreaseCountUnstopable());
+                _coroutine = StartCoroutine(Counting());
             }
             else
             {
@@ -35,7 +35,7 @@ public class Counter : MonoBehaviour
         }
     }
 
-    private IEnumerator IncreaseCountUnstopable()
+    private IEnumerator Counting()
     {
         WaitForSeconds timeDelay = new WaitForSeconds(_delay);
 
@@ -46,9 +46,9 @@ public class Counter : MonoBehaviour
         }        
     }
 
-    public void IncreaseCount()
+    private void IncreaseCount()
     {
         _count++;
-        CounterChanged?.Invoke(_count);
+        Changed?.Invoke(_count);
     }
 }
