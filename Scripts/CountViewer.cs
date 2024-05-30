@@ -15,12 +15,12 @@ public class CountViewer : MonoBehaviour
     }
     private void OnEnable()
     {
-        _counter.CounterChanged += UpdateCounter;
+        _counter.Changed += UpdateCounter;
     }
 
     private void OnDisable()
     {
-        _counter.CounterChanged -= UpdateCounter;
+        _counter.Changed -= UpdateCounter;
     }
 
     private void UpdateCounter(int currentCount)
